@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trip Buddy Dashboard</title>
+
+<style>
+*{
+    background-color: lightblue;
+}
+
+</style>
+
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Hello {{user.first_name}}!</h1>
+        <a class='logout' href="/log_out">Log Out</a><br><br>
+        
+        <form class='create_job' action="jobs/new" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Create a New Job">
+        </form>
+
+        <!--Current List of job's-->
+        <div class="your_trips">
+            <h3>Everyone's jobs:</h3>
+            <table>
+                <thead>
+                    <th>Poster</th>
+                    <th>Job</th>
+                    <th>Location</th>
+                    <th>Action</th>
+                </thead>
+                {% for job in jobs %}
+                    <tr>
+                        <td>{{job.user.first_name}}</td>
+                        <td>{{job.title}}</td>
+                        <td>{{job.location}}</td>
+                        <td>
+                            <a href="jobs/show/{{job.id}}">View</a>
+                            {% if user == job.user %}
+                                <a href="jobs/edit/{{job.id}}"> | Edit |</a>
+                                <a href="/delete/{{job.id}}"> Delete</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %} 
+            </table>
+        </div>
+
+        <!--My job's-->
+        <div class="other_trips">
+            <h3>{{user.first_name}}'s jobs:</h3>
+            <table class='trip_table'>
+                <thead>
+                    <th>Job</th>
+                    <th>Actions</th>
+                </thead>
+                {% for job in user.job.all %}
+                    <tr>
+                        <td>{{job.title}}</td>
+                        <td><a href="jobs/show/{{job.id}}">View |</a><a href="/delete/{{job.id}}"> Delete</a></td>
+                    </tr>
+                {% endfor %} 
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Trip</title>
+    
+<style>
+*{
+    background-color: lightblue;
+}    
+</style>
+                
+</head>
+<body>
+    <div class="wrapper">
+    
+        <!--Header-->
+        <h1 class='login_name'>Hello {{user.first_name}}! Lets edit your job!</h1>
+        <a class='dash_log_button' href="/log_out">Log Out</a>  <br><br>
+        
+        <!--Validation errors-->
+        {% if messages %}   
+            {% for message in messages %}    
+                {{ message }}   <br>
+            {% endfor %}<br>
+        {% endif %}
+        
+        <!--Form for making a new trip-->
+        <div class="trip_box">
+            <form method="POST" action="/jobs/update">
+                {% csrf_token %}
+                <label>Title:</label>
+                <input type="text" name="title">
+                <br><br>
+                <label>Description</label>
+                <input type="text" name="description">
+                <br><br>
+                <label>Location:</label>
+                <input type="text" name="location">
+                <br><br>
+                <a href="/dashboard"><input type="button" value='Cancel'></a>
+                <input type="hidden" name="job" value="{{job.id}}">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

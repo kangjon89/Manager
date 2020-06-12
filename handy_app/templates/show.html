@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>View Trip</title>
+</head>
+<body>
+    <div class="wrapper">
+        <h4>Hello {{user_logged_in.first_name}}! These are the job details!</h4>
+        <a class="dashboard_button" href="/dashboard">Dashboard</a>
+        <a class="log_out_button" href="/log_out">Log Out</a>
+        <br>
+        <p>Title:{{jobs.title}}</p>
+        <p>Description:{{jobs.description}}</p>    
+        <p>Location: {{jobs.location}}</p>    
+        <p>Posted by: {{jobs.user.first_name}}</p>    
+        <p>Posted on: {{jobs.created_at}}</p>    
+    </div>
+</body>
+</html>

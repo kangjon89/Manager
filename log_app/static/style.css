@@ -1,0 +1,31 @@
+*{
+    font-family: sans-serif;
+}
+
+.register {
+    vertical-align: top;
+    display: inline-block;
+    height: 450px;
+    width: 300px;
+    background-color: lightblue;
+    padding: 15px;
+}
+
+.login {
+    vertical-align: top;
+    display: inline-block;
+    height: 450px;
+    width: 300px;
+    background-color: lightblue;
+    padding: 15px;
+}
+
+.space {
+    margin: 10px;
+}
+
+input {
+    display: block;
+    margin: 5px;
+    font-size: 10pt;
+} 

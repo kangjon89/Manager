@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create</title>
+
+<style>
+*{
+    background-color: lightblue;
+}    
+</style>
+        
+        
+        
+</head>
+<body>
+    <div class="wrapper">  
+        <h1>Hello {{user.first_name}}! Create a job!</h1>
+        <a class='log_out' href="/log_out">Log Out</a> <br><br>
+        
+        <form method="POST" action="create">
+            {% csrf_token %}
+                {% if messages %}       
+                    {% for message in messages %}
+                        {% if message in messages %} 
+                            {{ message }}<br>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <br>
+            <label>Title:</label>
+            <input type="text" name="title">
+            <br><br>
+            <label>Description:</label>
+            <input type="text" name="description">         
+            <br><br>
+            <label>Location:</label>
+            <input type="text" name="location">
+            <br><br>
+            <input type="submit" value="Submit">
+            <a href="/dashboard"><input type="button" value='Cancel'></a>
+        </form>
+    </div>
+</body>
+</html>
