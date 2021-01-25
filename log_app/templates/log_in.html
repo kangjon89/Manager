@@ -9,45 +9,91 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">   
 
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-    <div class="wrapper">
-            <p><h1 class="welcome">WELCOME!</h1></p>
 
-            {% if messages %}
-            <ul>
-                {% for message in messages %}
-                <li>{{ message }}</li>    
-                {% endfor %}
-            </ul>
-            {% endif %}
+    <div class="main">
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Register to Trip Buddy!</h2>
 
-            <div class="register">
-                <p><h3>Register if you are a new user!</h3></p>
+                        {% if messages %}
+                        <ul>
+                            {% for message in messages %}
+                            <li>{{ message }}</li>    
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
 
-            <form method=POST action='/registration'>
-                {% csrf_token %}
-                First Name: <input type='text' name='first_name'>               
-                <br>
-                Last Name: <input type='text' name='last_name'><br>
-                Email: <input type='text' name='email'><br>
-                Password: <input type='password' name='password'><br>
-                Confirm Password: <input type='password' name='confirm_password'><br>
-                <input type='submit' value='Register!'>
-            </form>
-        </div>
+                        <form method="POST" action="/registration">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                First Name:<input type="text" name="first_name" placeholder="First Name"/><br>
+                            </div>
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                Last Name:<input type="text" name="last_name" placeholder="Last Name"/><br>
+                            </div>
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                Email:<input type="text" name="email" placeholder="Email"/><br>
+                            </div>
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                Password:<input type="password" name="password" placeholder="Password"/><br>
+                            </div>
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                Confirm Password:<input type="password" name="confirm_password" placeholder="Confirm Password"/><br>
+                            </div>
 
-        <div class="login">
-            <form action="/login" method="POST">
-                {% csrf_token %}
-                <h3>Login!</h3>
-                Email:<input type='text' name='email'><br>
-                Password:<input type='password' name='password'><br>
-                <input type="submit" value="Log In!"><br>
-            </form>
-        </div>
-
-        </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            </div>
+                        </form>
+                    </div>
+                   
+                
+                 
+                </div>
+            </div>
+        </section>  
+        <!-- Sing in  Form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-form">
+                        <h2 class="form-title">Welcome Back!</h2>
+                        <form action="/login" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                Email:<input type="text" placeholder="Email"/><br>
+                            </div>
+                            <div class="form-group">
+                                <label for="password"><i class="zmdi zmdi-lock"></i></label>
+                                Password:<input type="password" placeholder="Password"/>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
+
 </body>
 </html>

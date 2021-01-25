@@ -5,32 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Trip Buddy Dashboard</title>
-
-<style>
-*{
-    background-color: lightblue;
-}
-
-</style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
 </head>
 <body>
     <div class="wrapper">
-        <h1>Hello {{user.first_name}}!</h1>
-        <a class='logout' href="/log_out">Log Out</a><br><br>
+        <h1>Hey, {{user.first_name}}, lets make a plan or two!</h1>
+        <a class='log_out' href="/log_out"><input class="btn btn-warning" type="button" value='Logout'></a><br><br>         
         
         <form class='create_job' action="jobs/new" method="POST">
             {% csrf_token %}
-            <input type="submit" value="Create a New Job">
-        </form>
+            <input class="btn btn-primary" type="submit" value="Create a New Job">
+        </form> <br>
 
         <!--Current List of job's-->
         <div class="your_trips">
-            <h3>Everyone's jobs:</h3>
-            <table>
+            <h3>Everyone's Trips:</h3>
+            <table class="table table-striped">
                 <thead>
-                    <th>Poster</th>
-                    <th>Job</th>
+                    <th>User who Posted</th>
+                    <th>Plans</th>
                     <th>Location</th>
                     <th>Action</th>
                 </thead>
@@ -53,11 +47,11 @@
 
         <!--My job's-->
         <div class="other_trips">
-            <h3>{{user.first_name}}'s jobs:</h3>
-            <table class='trip_table'>
+            <h3>{{user.first_name}}'s Trips:</h3>
+            <table class="table table-striped">
                 <thead>
-                    <th>Job</th>
-                    <th>Actions</th>
+                    <th>Trip</th>
+                    <th>Actions Available</th>
                 </thead>
                 {% for job in user.job.all %}
                     <tr>

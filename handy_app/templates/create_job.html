@@ -6,19 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Create</title>
 
-<style>
-*{
-    background-color: lightblue;
-}    
-</style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         
         
         
 </head>
 <body>
-    <div class="wrapper">  
+
         <h1>Hello {{user.first_name}}! Create a job!</h1>
-        <a class='log_out' href="/log_out">Log Out</a> <br><br>
+        <a class='log_out' href="/log_out"><input class="btn btn-warning" type="button" value='Logout'></a><br><br> <br><br>
         
         <form method="POST" action="create">
             {% csrf_token %}
@@ -30,18 +26,23 @@
                     {% endfor %}
                 {% endif %}
                 <br>
-            <label>Title:</label>
-            <input type="text" name="title">
+
+            <div class="form-floating mb-3">
+                <input name="title" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Title</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input name="description" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Description</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input name="location" type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Location</label>
+            </div>
             <br><br>
-            <label>Description:</label>
-            <input type="text" name="description">         
-            <br><br>
-            <label>Location:</label>
-            <input type="text" name="location">
-            <br><br>
-            <input type="submit" value="Submit">
-            <a href="/dashboard"><input type="button" value='Cancel'></a>
+            <input class="btn btn-primary" type="submit" value="Submit">
+            <a href="/dashboard"><input class="btn btn-danger" type="button" value='Cancel'></a>
         </form>
-    </div>
+
 </body>
 </html>
